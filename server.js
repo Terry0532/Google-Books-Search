@@ -2,7 +2,10 @@ const express = require("express");
 const app = express();
 const routes = require("./routes");
 const PORT = process.env.PORT || 8080;
+const db = require("./models");
 
 app.use(routes);
 
-app.listen(PORT, () => console.log("App listening on PORT: " + PORT));
+db.sequelize.sync().then(function () {
+    app.listen(PORT, () => console.log("App listening on PORT: " + PORT));
+});
