@@ -5,6 +5,6 @@ module.exports = {
         db.books
             .findAll({})
             .then(data => res.status(200).json(data))
-            .catch(err => res.json(err));
+            .catch(err => res.status(500).json(err));
     }
 }
