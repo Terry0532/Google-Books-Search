@@ -1,8 +1,6 @@
 import React from "react";
 import "./style.css";
-import { store } from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import "animate.css";
+import Message from "../Message";
 import API from "../../utils/API";
 
 function Table(props) {
@@ -11,30 +9,12 @@ function Table(props) {
         API
             .saveBook(book)
             .then(() => {
-                store.addNotification({
-                    message: "Book saved",
-                    type: "success",
-                    insert: "top",
-                    container: "top-center",
-                    animationIn: ["animate__animated", "animate__bounceIn"],
-                    animationOut: ["animate__animated", "animate__bounceOut"],
-                    dismiss: {
-                        duration: 1500
-                    }
-                });
+                const info = ["Book saved", "success", "animate__bounceIn", "animate__bounceOut"]
+                Message(info);
             })
             .catch(err => {
-                store.addNotification({
-                    message: err.message,
-                    type: "danger",
-                    insert: "top",
-                    container: "top-center",
-                    animationIn: ["animate__animated", "animate__shakeX"],
-                    animationOut: ["animate__animated", "animate__fadeOut"],
-                    dismiss: {
-                        duration: 1500
-                    }
-                });
+                const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                Message(info);
             });
     }
 

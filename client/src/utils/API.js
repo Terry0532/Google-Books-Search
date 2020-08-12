@@ -9,5 +9,8 @@ export default {
     },
     savedBooks: () => {
         return axios.get("/api/saved");
+    },
+    deleteBook: id => {
+        return axios.delete("/api/saved", { data: { id: id } });
     }
 }

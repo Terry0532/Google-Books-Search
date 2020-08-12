@@ -1,8 +1,6 @@
 import React from "react";
 import API from "../utils/API";
-import { store } from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import "animate.css";
+import Message from "../components/Message";
 
 class Saved extends React.Component {
     state = {
@@ -14,22 +12,23 @@ class Saved extends React.Component {
             .savedBooks()
             .then(data => this.setState({ savedList: data.data }))
             .catch(err => {
-                store.addNotification({
-                    message: err.message,
-                    type: "danger",
-                    insert: "top",
-                    container: "top-center",
-                    animationIn: ["animate__animated", "animate__shakeX"],
-                    animationOut: ["animate__animated", "animate__fadeOut"],
-                    dismiss: {
-                        duration: 1500
-                    }
-                });
+                const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                Message(info);
             });
     }
 
     deleteBook = (id) => {
-        console.log(id);
+        API
+            .deleteBook(id)
+            .then(() => {
+                this.componentDidMount();
+                const info = ["Book deleted", "success", "animate__bounceIn", "animate__bounceOut"]
+                Message(info);
+            })
+            .catch(err => {
+                const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                Message(info);
+            });
     }
 
     render() {
