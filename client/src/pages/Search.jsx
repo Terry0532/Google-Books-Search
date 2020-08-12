@@ -24,6 +24,7 @@ class Search extends React.Component {
         API
             .googleBook(this.state.title)
             .then(result => {
+                //set state list to result list and print it out
                 this.setState({ list: result.data.items });
                 console.log(this.state.list);
             })

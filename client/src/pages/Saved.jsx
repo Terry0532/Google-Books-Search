@@ -7,6 +7,7 @@ class Saved extends React.Component {
         savedList: []
     }
 
+    //get saved list from database and print it out when open this page
     componentDidMount() {
         API
             .savedBooks()
@@ -17,6 +18,7 @@ class Saved extends React.Component {
             });
     }
 
+    //delete saved book from id
     deleteBook = (id) => {
         API
             .deleteBook(id)
