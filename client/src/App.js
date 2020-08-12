@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Search from "./pages/Search";
 import Saved from "./pages/Saved";
 import Navbar from "./components/Navbar";
+import ReactNotification from "react-notifications-component";
 
 function App() {
   return (
     <Router>
+      <ReactNotification />
       <h1>Google Book Seach</h1>
       <Navbar />
       <Switch>
