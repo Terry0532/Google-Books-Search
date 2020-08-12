@@ -13,6 +13,8 @@ This is a simple MERN stack application that will call google books API to retur
 [Google Books Search](https://frozen-anchorage-90956.herokuapp.com)
 
 ## Tech Used
+![GitHub Top Language](https://img.shields.io/github/languages/top/Terry0532/Google-Books-Search) ![GitHub language count](https://img.shields.io/github/languages/count/Terry0532/Google-Books-Search)
+
 React, NodeJs, Sequelize, Google Books API, Express
 
 ## Screenshot
@@ -23,3 +25,6 @@ React, NodeJs, Sequelize, Google Books API, Express
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [MIT License](LICENSE)
+<br/><br/>
+
+[Back To The Top](#Google-Books-Search)
