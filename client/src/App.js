@@ -12,8 +12,8 @@ function App() {
       <h1>Google Book Seach</h1>
       <Navbar />
       <Switch>
-        <Route exact path="/" component={Search} />
-        <Route exact path="/saved" component={Saved} />
+        <Route exact path={process.env.PUBLIC_URL + "/"} component={Search} />
+        <Route exact path={process.env.PUBLIC_URL + "/saved"} component={Saved} />
       </Switch>
     </Router>
   );
