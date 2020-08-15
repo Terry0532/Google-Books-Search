@@ -5,7 +5,7 @@ function Navbar() {
     return (
         <ul>
             <li>
-                <Link to={process.env.PUBLIC_URL + "/"}>Seach</Link>
+                <Link to={process.env.PUBLIC_URL + "/"}>Search</Link>
             </li>
             <li>
                 <Link to={process.env.PUBLIC_URL + "/saved"}>Saved</Link>

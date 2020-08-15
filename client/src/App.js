@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <ReactNotification />
-      <h1>Google Book Seach</h1>
+      <h1>Google Book Search</h1>
       <Navbar />
       <Switch>
         <Route exact path={process.env.PUBLIC_URL + "/"} component={Search} />
