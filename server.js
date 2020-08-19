@@ -10,6 +10,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
 
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
+
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
