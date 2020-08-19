@@ -10,8 +10,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
 
-require('./routes/auth.routes')(app);
-require('./routes/user.routes')(app);
+app.use(function (req, res, next) {
+    res.header(
+        "Access-Control-Allow-Headers",
+        "x-access-token, Origin, Content-Type, Accept"
+    );
+    next();
+});
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
