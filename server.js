@@ -4,10 +4,17 @@ const routes = require("./routes");
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
 const path = require("path");
+const bodyParser = require("body-parser");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
+
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "client", "build")))
 app.get("*", (req, res) => {
