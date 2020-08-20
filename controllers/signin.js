@@ -12,7 +12,7 @@ module.exports = {
             })
             .then(user => {
                 if (!user) {
-                    return res.status(404).send({ message: "User Not found." });
+                    return res.status(404).send({ message: "User Not Found!" });
                 }
 
                 var passwordIsValid = bcrypt.compareSync(

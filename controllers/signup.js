@@ -6,7 +6,6 @@ module.exports = {
         db.users
             .create({
                 username: req.body.username,
-                email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, 8)
             })
             .then(user => res.status(200).json(user))

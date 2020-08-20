@@ -10,12 +10,13 @@ function PrivateRoute({ children, ...rest }) {
                 AuthService.getCurrentUser() ? (
                     children
                 ) : (
-                        <Redirect
-                            to={{
-                                pathname: "/login",
-                                state: { from: location }
-                            }}
-                        />
+                    <p>You need to login first</p>
+                        // <Redirect
+                        //     to={{
+                        //         pathname: "/login",
+                        //         state: { from: location }
+                        //     }}
+                        // />
                     )
             }
         />

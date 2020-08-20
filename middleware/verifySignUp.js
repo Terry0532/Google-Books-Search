@@ -13,19 +13,7 @@ module.exports = {
                 });
                 return;
             }
-            db.users.findOne({
-                where: {
-                    email: req.body.email
-                }
-            }).then(email => {
-                if (email) {
-                    res.status(400).send({
-                        message: "Email is already in use."
-                    });
-                    return;
-                }
-                next();
-            });
-        }).catch(err => res.status(500).send({ message: err.message }));
+            next();
+        }).catch(err => res.status(500).json(err));
     }
 }
