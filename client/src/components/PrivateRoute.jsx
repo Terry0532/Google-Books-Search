@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import AuthService from "../utils/AuthService";
 
 function PrivateRoute({ children, ...rest }) {
@@ -10,7 +10,7 @@ function PrivateRoute({ children, ...rest }) {
                 AuthService.getCurrentUser() ? (
                     children
                 ) : (
-                    <p>You need to login first</p>
+                        <p>You need to login first</p>
                         // <Redirect
                         //     to={{
                         //         pathname: "/login",

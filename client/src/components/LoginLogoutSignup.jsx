@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Button, FormControl } from "react-bootstrap";
 import AuthService from "../utils/AuthService";
 import Message from "../components/Message";
@@ -6,7 +6,7 @@ import Message from "../components/Message";
 class LoginLogoutSignup extends React.Component {
     state = {
         username: "",
-        passowrd: "",
+        password: "",
         user: false
     }
 
@@ -17,7 +17,7 @@ class LoginLogoutSignup extends React.Component {
     }
 
     handlePassword = e => {
-        this.setState({ passowrd: e.target.value })
+        this.setState({ password: e.target.value })
     }
 
     handleUsername = e => {
@@ -27,13 +27,13 @@ class LoginLogoutSignup extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         console.log(this.state.username);
-        console.log(this.state.passowrd);
+        console.log(this.state.password);
         AuthService
-            .login(this.state.username, this.state.passowrd)
+            .login(this.state.username, this.state.password)
             .then(() => this.setState({
                 user: true,
                 username: "",
-                passowrd: ""
+                password: ""
             }))
             .catch(err => {
                 const info = [err.response.data.message, "danger", "animate__shakeX", "animate__fadeOut"]
@@ -47,7 +47,21 @@ class LoginLogoutSignup extends React.Component {
     }
 
     validateForm = () => {
-        return this.state.username.length > 0 && this.state.passowrd.length > 0;
+        return this.state.username.length > 0 && this.state.password.length > 0;
+    }
+
+    signup = () => {
+        AuthService
+            .register(this.state.username, this.state.password)
+            .then(() => this.setState({
+                user: true,
+                username: "",
+                password: ""
+            }))
+            .catch(err => {
+                const info = [err.response.data.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                Message(info);
+            })
     }
 
     render() {
@@ -57,9 +71,9 @@ class LoginLogoutSignup extends React.Component {
             return (
                 <Form inline onSubmit={this.handleSubmit}>
                     <FormControl type="username" placeholder="Username" className="mr-sm-2" value={this.state.username} onChange={this.handleUsername} />
-                    <FormControl type="password" placeholder="Password" className="mr-sm-2" value={this.state.passowrd} onChange={this.handlePassword} />
+                    <FormControl type="new-password" placeholder="Password" className="mr-sm-2" value={this.state.password} onChange={this.handlePassword} />
                     <Button variant="outline-success" type="submit" disabled={!this.validateForm()}>Login</Button>
-                    <Button variant="outline-success" disabled={!this.validateForm()}>Signup</Button>
+                    <Button variant="outline-success" disabled={!this.validateForm()} onClick={this.signup}>Signup</Button>
                 </Form>
             )
         }

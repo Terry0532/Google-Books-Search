@@ -21,10 +21,9 @@ class AuthService {
         console.log("logout");
     }
 
-    register(username, email, password) {
+    register(username, password) {
         return axios.post("/api/auth/signup", {
             username,
-            email,
             password
         });
     }
