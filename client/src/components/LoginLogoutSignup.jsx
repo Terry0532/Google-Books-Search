@@ -26,15 +26,17 @@ class LoginLogoutSignup extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        console.log(this.state.username);
-        console.log(this.state.password);
         AuthService
             .login(this.state.username, this.state.password)
-            .then(() => this.setState({
-                user: true,
-                username: "",
-                password: ""
-            }))
+            .then(() => {
+                window.location.reload();
+                this.setState({
+                    user: true,
+                    username: "",
+                    password: ""
+                })
+            }
+            )
             .catch(err => {
                 const info = [err.response.data.message, "danger", "animate__shakeX", "animate__fadeOut"]
                 Message(info);
@@ -44,6 +46,7 @@ class LoginLogoutSignup extends React.Component {
     handleLogout = () => {
         AuthService.logout();
         this.setState({ user: false });
+        window.location.reload();
     }
 
     validateForm = () => {
@@ -71,7 +74,7 @@ class LoginLogoutSignup extends React.Component {
             return (
                 <Form inline onSubmit={this.handleSubmit}>
                     <FormControl type="username" placeholder="Username" className="mr-sm-2" value={this.state.username} onChange={this.handleUsername} />
-                    <FormControl type="new-password" placeholder="Password" className="mr-sm-2" value={this.state.password} onChange={this.handlePassword} />
+                    <FormControl type="password" autoComplete="on" placeholder="Password" className="mr-sm-2" value={this.state.password} onChange={this.handlePassword} />
                     <Button variant="outline-success" type="submit" disabled={!this.validateForm()}>Login</Button>
                     <Button variant="outline-success" disabled={!this.validateForm()} onClick={this.signup}>Signup</Button>
                 </Form>
