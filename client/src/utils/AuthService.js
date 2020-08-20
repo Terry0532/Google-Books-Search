@@ -25,6 +25,12 @@ class AuthService {
         return axios.post("/api/auth/signup", {
             username,
             password
+        }).then(response => {
+            if (response.data.accessToken) {
+                localStorage.setItem("user", JSON.stringify(response.data));
+            }
+
+            return response.data;
         });
     }
 

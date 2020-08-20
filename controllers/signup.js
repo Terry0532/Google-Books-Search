@@ -8,7 +8,7 @@ module.exports = {
                 username: req.body.username,
                 password: bcrypt.hashSync(req.body.password, 8)
             })
-            .then(user => res.status(200).json(user))
+            .then(() => res.status(200).end())
             .catch(err => res.status(500).send({ message: err.message }));
     }
 }

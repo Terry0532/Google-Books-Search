@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Button, FormControl } from "react-bootstrap";
 import AuthService from "../utils/AuthService";
 import Message from "../components/Message";
+import { Redirect } from "react-router-dom";
 
 class LoginLogoutSignup extends React.Component {
     state = {
@@ -29,7 +30,6 @@ class LoginLogoutSignup extends React.Component {
         AuthService
             .login(this.state.username, this.state.password)
             .then(() => {
-                window.location.reload();
                 this.setState({
                     user: true,
                     username: "",
@@ -38,12 +38,18 @@ class LoginLogoutSignup extends React.Component {
             }
             )
             .catch(err => {
-                const info = [err.response.data.message, "danger", "animate__shakeX", "animate__fadeOut"]
-                Message(info);
+                if (err.message === "Request failed with status code 500") {
+                    const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                    Message(info);
+                } else {
+                    const info = [err.response.data.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                    Message(info);
+                }
             });
     }
 
     handleLogout = () => {
+        const { history } = this.props;
         AuthService.logout();
         this.setState({ user: false });
         window.location.reload();
@@ -56,20 +62,44 @@ class LoginLogoutSignup extends React.Component {
     signup = () => {
         AuthService
             .register(this.state.username, this.state.password)
-            .then(() => this.setState({
-                user: true,
-                username: "",
-                password: ""
-            }))
+            .then(() => AuthService
+                .login(this.state.username, this.state.password)
+                .then(() => {
+                    this.setState({
+                        user: true,
+                        username: "",
+                        password: ""
+                    })
+                }
+                )
+                .catch(err => {
+                    if (err.message === "Request failed with status code 500") {
+                        const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                        Message(info);
+                    } else {
+                        const info = [err.response.data.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                        Message(info);
+                    }
+                }))
             .catch(err => {
-                const info = [err.response.data.message, "danger", "animate__shakeX", "animate__fadeOut"]
-                Message(info);
-            })
+                if (err.message === "Request failed with status code 500") {
+                    const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                    Message(info);
+                } else {
+                    const info = [err.response.data.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                    Message(info);
+                }
+            });
     }
 
     render() {
         if (this.state.user) {
-            return <Button onClick={this.handleLogout}>Logout</Button>;
+            return (
+                <div>
+                    <Redirect to="/" />
+                    <Button onClick={this.handleLogout}>Logout</Button>
+                </div>
+            )
         } else {
             return (
                 <Form inline onSubmit={this.handleSubmit}>

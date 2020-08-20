@@ -11,12 +11,6 @@ function PrivateRoute({ children, ...rest }) {
                     children
                 ) : (
                         <p>You need to login first</p>
-                        // <Redirect
-                        //     to={{
-                        //         pathname: "/login",
-                        //         state: { from: location }
-                        //     }}
-                        // />
                     )
             }
         />

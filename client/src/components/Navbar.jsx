@@ -10,7 +10,7 @@ function NavBar() {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Link to={process.env.PUBLIC_URL + "/"} style={{ paddingTop: "5px", paddingLeft: "9px", paddingBottom: "4px" }}>Search</Link>
-                    <Link to={process.env.PUBLIC_URL + "/protected"} style={{ paddingTop: "5px", paddingLeft: "9px", paddingBottom: "4px" }}>Saved</Link>
+                    <Link to={process.env.PUBLIC_URL + "/saved"} style={{ paddingTop: "5px", paddingLeft: "9px", paddingBottom: "4px" }}>Saved</Link>
                 </Nav>
                 <LLS />
             </Navbar.Collapse>

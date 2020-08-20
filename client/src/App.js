@@ -14,7 +14,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path={process.env.PUBLIC_URL + "/"} component={Search} />
-        <PrivateRoute path={process.env.PUBLIC_URL + "/protected"}>
+        <PrivateRoute path={process.env.PUBLIC_URL + "/saved"}>
           <Saved />
         </PrivateRoute>
       </Switch>
