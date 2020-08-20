@@ -8,7 +8,10 @@ function Navbar() {
                 <Link to={process.env.PUBLIC_URL + "/"}>Search</Link>
             </li>
             <li>
-                <Link to={process.env.PUBLIC_URL + "/saved"}>Saved</Link>
+                <Link to={process.env.PUBLIC_URL + "/protected"}>Saved</Link>
+            </li>
+            <li>
+                <Link to={process.env.PUBLIC_URL + "/login"}>Login</Link>
             </li>
         </ul>
     );

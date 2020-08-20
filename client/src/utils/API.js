@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./authHeader";
 
 export default {
     googleBook: title => {
@@ -12,5 +13,8 @@ export default {
     },
     deleteBook: id => {
         return axios.delete("/api/saved", { data: { id: id } });
+    },
+    getSavedPage: () => {
+        return axios.get("api/user", { headers: authHeader() });
     }
 }
