@@ -22,7 +22,7 @@ class Search extends React.Component {
                     .then(result => {
                         this.setState({ random: "" });
                         //set state list to result list and print it out
-                        this.setState({ list: result.data.items, title: "" });
+                        this.setState({ list: result.data.items });
                     })
                     .catch(err => {
                         //show user error message

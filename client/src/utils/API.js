@@ -19,5 +19,8 @@ export default {
     },
     randomWord: () => {
         return axios.get("https://random-word-api.herokuapp.com/word?number=1");
+    },
+    topSaved: () => {
+        return axios.get("/api/top");
     }
 }

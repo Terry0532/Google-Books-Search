@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import ReactNotification from "react-notifications-component";
 import PrivateRoute from "./components/PrivateRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
+import TopSaved from "./pages/TopSaved";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <PrivateRoute path={process.env.PUBLIC_URL + "/saved"}>
           <Saved />
         </PrivateRoute>
+        <Route exact path={process.env.PUBLIC_URL + "/top"} component={TopSaved} />
       </Switch>
     </Router>
   );

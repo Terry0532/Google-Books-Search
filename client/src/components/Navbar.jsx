@@ -11,6 +11,7 @@ function NavBar() {
                 <Nav className="mr-auto">
                     <Link to={process.env.PUBLIC_URL + "/"} style={{ paddingTop: "5px", paddingLeft: "9px", paddingBottom: "4px" }}>Search</Link>
                     <Link to={process.env.PUBLIC_URL + "/saved"} style={{ paddingTop: "5px", paddingLeft: "9px", paddingBottom: "4px" }}>Saved</Link>
+                    <Link to={process.env.PUBLIC_URL + "/top"} style={{ paddingTop: "5px", paddingLeft: "9px", paddingBottom: "4px" }}>Ranking</Link>
                 </Nav>
                 <LLS />
             </Navbar.Collapse>
