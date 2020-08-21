@@ -6,7 +6,9 @@ module.exports = {
         db.books
             .findAll({
                 group: ["title"],
-                attributes: ["title", [sequelize.fn("COUNT", "title"), "times"]]
+                limit: 10,
+                attributes: ["title", [sequelize.fn("COUNT", "*"), "times"]],
+                order: [[sequelize.literal('times'), 'DESC']]
             })
             .then(data => res.status(200).json(data))
             .catch(err => res.status(500).json(err));
