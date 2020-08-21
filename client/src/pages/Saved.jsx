@@ -1,7 +1,7 @@
 import React from "react";
 import API from "../utils/API";
 import Message from "../components/Message";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Container, Row, Col } from "react-bootstrap";
 import AuthService from "../utils/AuthService";
 
 class Saved extends React.Component {
@@ -37,30 +37,38 @@ class Saved extends React.Component {
 
     render() {
         return (
-            <Table striped bordered hover responsive>
-                <tbody>
-                    {this.state.savedList.map(book => (
-                        <React.Fragment key={book.id}>
-                            <tr>
-                                <th>{book.publishedDate}</th>
-                                <th>{book.title}</th>
-                                <th><Button onClick={() => this.deleteBook(book.id)}>delete</Button></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src={book.thumbnail} alt={book.title} />
-                                </td>
-                                <td>
-                                    <p>{book.description}</p>
-                                </td>
-                                <td>
-                                    <a href={book.infoLink}>Link</a>
-                                </td>
-                            </tr>
-                        </React.Fragment>
-                    ))}
-                </tbody>
-            </Table>
+            <Container fluid>
+                <Row>
+                    <Col></Col>
+                    <Col md="8">
+                        <Table striped bordered hover responsive>
+                            <tbody>
+                                {this.state.savedList.map(book => (
+                                    <React.Fragment key={book.id}>
+                                        <tr>
+                                            <th>{book.publishedDate}</th>
+                                            <th>{book.title}</th>
+                                            <th><Button onClick={() => this.deleteBook(book.id)}>delete</Button></th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src={book.thumbnail} alt={book.title} />
+                                            </td>
+                                            <td>
+                                                <p>{book.description}</p>
+                                            </td>
+                                            <td>
+                                                <a href={book.infoLink}>Link</a>
+                                            </td>
+                                        </tr>
+                                    </React.Fragment>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
         );
     }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import Table from "../components/Table";
 import API from "../utils/API";
 import Message from "../components/Message";
-import { Form, Button, Col, Spinner } from "react-bootstrap";
+import { Form, Button, Col, Spinner, Container, Row } from "react-bootstrap";
 
 class Search extends React.Component {
     state = {
@@ -43,26 +43,32 @@ class Search extends React.Component {
 
     render() {
         return (
-            <div>
-                <Form onSubmit={this.handleClick} style={{ paddingTop: "10px" }}>
-                    <Form.Row className="align-items-center">
-                        <Col xs="3">
-                            <Form.Control
-                                className="mb-2"
-                                id="inlineFormInput"
-                                placeholder="Enter book title"
-                                value={this.state.title}
-                                onChange={this.handleInputChange}
-                                autoComplete="off"
-                            />
-                        </Col>
-                        <Col xs="auto">
-                            <Button type="submit" className="mb-2" variant="primary"><Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" className={this.state.spinner} />{this.state.search}</Button>
-                        </Col>
-                    </Form.Row>
-                </Form>
-                <Table list={this.state.list} />
-            </div>
+            <Container fluid>
+                <Row>
+                    <Col></Col>
+                    <Col md="8">
+                        <Form onSubmit={this.handleClick} style={{ paddingTop: "10px" }}>
+                            <Form.Row className="align-items-center">
+                                <Col xs="4">
+                                    <Form.Control
+                                        className="mb-2"
+                                        id="inlineFormInput"
+                                        placeholder="Enter book title"
+                                        value={this.state.title}
+                                        onChange={this.handleInputChange}
+                                        autoComplete="off"
+                                    />
+                                </Col>
+                                <Col xs="auto">
+                                    <Button type="submit" className="mb-2" variant="primary"><Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" className={this.state.spinner} />{this.state.search}</Button>
+                                </Col>
+                            </Form.Row>
+                        </Form>
+                        <Table list={this.state.list} />
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
         );
     }
 }

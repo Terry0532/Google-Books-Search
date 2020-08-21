@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import AuthService from "../utils/AuthService";
+import { Col, Container, Row } from "react-bootstrap";
 
 function PrivateRoute({ children, ...rest }) {
     return (
@@ -10,7 +11,15 @@ function PrivateRoute({ children, ...rest }) {
                 AuthService.getCurrentUser() ? (
                     children
                 ) : (
-                        <p>You need to login first</p>
+                        <Container fluid>
+                            <Row>
+                                <Col></Col>
+                                <Col md="8">
+                                    <p>You need to login first</p>
+                                </Col>
+                                <Col></Col>
+                            </Row>
+                        </Container>
                     )
             }
         />
