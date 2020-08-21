@@ -9,7 +9,31 @@ class Search extends React.Component {
         title: "",
         list: [],
         spinner: "d-none",
-        search: "Search"
+        search: "Search",
+        random: "d-none"
+    }
+
+    componentDidMount() {
+        API
+            .randomWord()
+            .then(result => {
+                API
+                    .googleBook(result.data[0])
+                    .then(result => {
+                        this.setState({ random: "" });
+                        //set state list to result list and print it out
+                        this.setState({ list: result.data.items, title: "" });
+                    })
+                    .catch(err => {
+                        //show user error message
+                        const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                        Message(info);
+                    });
+            })
+            .catch(err => {
+                const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
+                Message(info);
+            });
     }
 
     handleInputChange = e => {
@@ -18,7 +42,7 @@ class Search extends React.Component {
 
     handleClick = e => {
         e.preventDefault();
-        this.setState({ spinner: "", search: "Loading..." });
+        this.setState({ spinner: "", search: "Loading...", random: "d-none" });
         //return and warn user enter something
         if (!this.state.title) {
             this.setState({ spinner: "d-none", search: "Search" });
@@ -64,6 +88,7 @@ class Search extends React.Component {
                                 </Col>
                             </Form.Row>
                         </Form>
+                        <p className={this.state.random}>Something random:</p>
                         <Table list={this.state.list} />
                     </Col>
                     <Col></Col>

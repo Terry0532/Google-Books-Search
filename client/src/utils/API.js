@@ -16,5 +16,8 @@ export default {
     },
     getSavedPage: () => {
         return axios.get("api/user", { headers: authHeader() });
+    },
+    randomWord: () => {
+        return axios.get("https://random-word-api.herokuapp.com/word?number=1");
     }
 }
