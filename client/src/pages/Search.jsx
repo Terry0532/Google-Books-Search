@@ -1,23 +1,27 @@
 import React from "react";
-import Table from "../components/Table/Table";
+import Table from "../components/Table";
 import API from "../utils/API";
 import Message from "../components/Message";
-import { Form, Button, Col } from "react-bootstrap";
+import { Form, Button, Col, Spinner } from "react-bootstrap";
 
 class Search extends React.Component {
     state = {
         title: "",
-        list: []
+        list: [],
+        spinner: "d-none",
+        search: "Search"
     }
 
-    handleInputChange = event => {
-        this.setState({ title: event.target.value });
+    handleInputChange = e => {
+        this.setState({ title: e.target.value });
     }
 
     handleClick = e => {
         e.preventDefault();
+        this.setState({ spinner: "", search: "Loading..." });
         //return and warn user enter something
         if (!this.state.title) {
+            this.setState({ spinner: "d-none", search: "Search" });
             const info = ["Enter something", "danger", "animate__shakeX", "animate__fadeOut"]
             Message(info);
             return;
@@ -25,10 +29,12 @@ class Search extends React.Component {
         API
             .googleBook(this.state.title)
             .then(result => {
+                this.setState({ spinner: "d-none", search: "Search" });
                 //set state list to result list and print it out
                 this.setState({ list: result.data.items, title: "" });
             })
             .catch(err => {
+                this.setState({ spinner: "d-none", search: "Search" });
                 //show user error message
                 const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
                 Message(info);
@@ -38,7 +44,7 @@ class Search extends React.Component {
     render() {
         return (
             <div>
-                <Form onSubmit={this.handleClick}>
+                <Form onSubmit={this.handleClick} style={{ paddingTop: "10px" }}>
                     <Form.Row className="align-items-center">
                         <Col xs="3">
                             <Form.Control
@@ -51,7 +57,7 @@ class Search extends React.Component {
                             />
                         </Col>
                         <Col xs="auto">
-                            <Button type="submit" className="mb-2">Submit</Button>
+                            <Button type="submit" className="mb-2" variant="primary"><Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" className={this.state.spinner} />{this.state.search}</Button>
                         </Col>
                     </Form.Row>
                 </Form>

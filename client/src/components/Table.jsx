@@ -1,9 +1,9 @@
 import React from "react";
-import "./style.css";
-import Message from "../Message";
-import API from "../../utils/API";
+import Message from "./Message";
+import API from "../utils/API";
+import { Table, Button } from "react-bootstrap";
 
-function Table(props) {
+function PrintTable(props) {
     //to save book to database
     function saveBook(book) {
         API
@@ -19,14 +19,14 @@ function Table(props) {
     }
 
     return (
-        <table>
+        <Table striped bordered hover responsive>
             <tbody>
                 {props.list.map(book => (
                     <React.Fragment key={book.id}>
                         <tr>
-                            <th>{book.volumeInfo.title}</th>
                             <th>{book.volumeInfo.publishedDate}</th>
-                            <th><button onClick={() => saveBook(book.volumeInfo)}>save</button></th>
+                            <th>{book.volumeInfo.title}</th>
+                            <th><Button onClick={() => saveBook(book.volumeInfo)}>save</Button></th>
                         </tr>
                         <tr>
                             {/* if there's image then print it */}
@@ -39,14 +39,14 @@ function Table(props) {
                                 <p>{book.volumeInfo.description}</p>
                             </td>
                             <td>
-                                <a href={book.volumeInfo.infoLink}>Link</a>
+                                <a href={book.volumeInfo.infoLink} target="_blank" rel="noopener noreferrer">Link</a>
                             </td>
                         </tr>
                     </React.Fragment>
                 ))}
             </tbody>
-        </table>
+        </Table>
     );
 }
 
-export default Table;
+export default PrintTable;

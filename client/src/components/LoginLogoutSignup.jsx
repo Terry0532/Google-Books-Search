@@ -49,7 +49,6 @@ class LoginLogoutSignup extends React.Component {
     }
 
     handleLogout = () => {
-        const { history } = this.props;
         AuthService.logout();
         this.setState({ user: false });
         window.location.reload();

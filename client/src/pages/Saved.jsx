@@ -1,6 +1,7 @@
 import React from "react";
 import API from "../utils/API";
 import Message from "../components/Message";
+import { Table, Button } from "react-bootstrap";
 
 class Saved extends React.Component {
     state = {
@@ -35,14 +36,14 @@ class Saved extends React.Component {
 
     render() {
         return (
-            <table>
+            <Table striped bordered hover responsive>
                 <tbody>
                     {this.state.savedList.map(book => (
                         <React.Fragment key={book.id}>
                             <tr>
-                                <th>{book.title}</th>
                                 <th>{book.publishedDate}</th>
-                                <th><button onClick={() => this.deleteBook(book.id)}>delete</button></th>
+                                <th>{book.title}</th>
+                                <th><Button onClick={() => this.deleteBook(book.id)}>delete</Button></th>
                             </tr>
                             <tr>
                                 <td>
@@ -58,7 +59,7 @@ class Saved extends React.Component {
                         </React.Fragment>
                     ))}
                 </tbody>
-            </table>
+            </Table>
         );
     }
 }
