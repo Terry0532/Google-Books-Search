@@ -2,10 +2,12 @@ import React from "react";
 import Message from "./Message";
 import API from "../utils/API";
 import { Table, Button } from "react-bootstrap";
+import AuthService from "../utils/AuthService";
 
 function PrintTable(props) {
     //to save book to database
     function saveBook(book) {
+        book.userId = AuthService.getCurrentUser().id;
         API
             .saveBook(book)
             .then(() => {
@@ -26,7 +28,9 @@ function PrintTable(props) {
                         <tr>
                             <th>{book.volumeInfo.publishedDate}</th>
                             <th>{book.volumeInfo.title}</th>
-                            <th><Button onClick={() => saveBook(book.volumeInfo)}>save</Button></th>
+                            {AuthService.getCurrentUser() &&
+                                <th><Button onClick={() => saveBook(book.volumeInfo)}>save</Button></th>
+                            }
                         </tr>
                         <tr>
                             {/* if there's image then print it */}
