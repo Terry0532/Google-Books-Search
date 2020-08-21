@@ -5,5 +5,6 @@ module.exports = {
     deleteBook: require("./deleteBook"),
     signin: require("./signin"),
     signup: require("./signup"),
-    userPage: require("./userPage")
+    userPage: require("./userPage"),
+    topSaved: require("./topSaved")
 }
