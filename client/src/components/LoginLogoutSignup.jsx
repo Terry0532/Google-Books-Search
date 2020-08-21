@@ -95,7 +95,7 @@ class LoginLogoutSignup extends React.Component {
         if (this.state.user) {
             return (
                 <div>
-                    <Redirect to="/" />
+                    <Redirect to={process.env.PUBLIC_URL + "/"} />
                     <Button onClick={this.handleLogout}>Logout</Button>
                 </div>
             )
