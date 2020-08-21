@@ -1,8 +1,8 @@
 import React from "react";
-import Input from "../components/Input";
 import Table from "../components/Table/Table";
 import API from "../utils/API";
 import Message from "../components/Message";
+import { Form, Button, Col } from "react-bootstrap";
 
 class Search extends React.Component {
     state = {
@@ -14,7 +14,8 @@ class Search extends React.Component {
         this.setState({ title: event.target.value });
     }
 
-    handleClick = () => {
+    handleClick = e => {
+        e.preventDefault();
         //return and warn user enter something
         if (!this.state.title) {
             const info = ["Enter something", "danger", "animate__shakeX", "animate__fadeOut"]
@@ -25,8 +26,7 @@ class Search extends React.Component {
             .googleBook(this.state.title)
             .then(result => {
                 //set state list to result list and print it out
-                this.setState({ list: result.data.items });
-                console.log(this.state.list);
+                this.setState({ list: result.data.items, title: "" });
             })
             .catch(err => {
                 //show user error message
@@ -38,7 +38,23 @@ class Search extends React.Component {
     render() {
         return (
             <div>
-                <Input handleInputChange={this.handleInputChange} handleClick={this.handleClick} value={this.state.title} />
+                <Form onSubmit={this.handleClick}>
+                    <Form.Row className="align-items-center">
+                        <Col xs="3">
+                            <Form.Control
+                                className="mb-2"
+                                id="inlineFormInput"
+                                placeholder="Enter book title"
+                                value={this.state.title}
+                                onChange={this.handleInputChange}
+                                autoComplete="off"
+                            />
+                        </Col>
+                        <Col xs="auto">
+                            <Button type="submit" className="mb-2">Submit</Button>
+                        </Col>
+                    </Form.Row>
+                </Form>
                 <Table list={this.state.list} />
             </div>
         );
