@@ -7,7 +7,7 @@
 - [License](#license)
 
 ## About
-This is a MERN stack application that will call google books API to return user search results. User can save their search results to MySQL database and view them in saved page. Inside of saved page user will have access to all the saved books on the database and be able delete them. 
+This is a MERN stack application that will call google books API to return user search results. If user wants to save the book for later use, they need to sign up first. After login user will have access to saved page. Ranking page will display top 10 saved books from all users. 
 
 ## Link
 [Google Books Search](https://frozen-anchorage-90956.herokuapp.com)
@@ -15,11 +15,10 @@ This is a MERN stack application that will call google books API to return user 
 ## Tech Used
 ![GitHub Top Language](https://img.shields.io/github/languages/top/Terry0532/Google-Books-Search) ![GitHub language count](https://img.shields.io/github/languages/count/Terry0532/Google-Books-Search)
 
-React, NodeJs, Sequelize, Google Books API, Express
+React, NodeJs, Sequelize, Google Books API, ExpressJS, JWT, dotenv, bootstrap
 
 ## Screenshot
-![Screenshot](images/Screenshot1.png)
-![Screenshot](images/Screenshot2.png)
+![Screenshot](images/screenshot.gif)
 
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
