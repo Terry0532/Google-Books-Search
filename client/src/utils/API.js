@@ -8,14 +8,14 @@ export default {
     saveBook: info => {
         return axios.post("/api/saved", info);
     },
-    savedBooks: id => {
-        return axios.get("/api/saved", { params: { id: id } });
+    savedBooks: () => {
+        return axios.get("/api/saved", { headers: authHeader() });
     },
+    // savedBooks: id => {
+    //     return axios.get("/api/saved", { params: { id: id } });
+    // },
     deleteBook: id => {
         return axios.delete("/api/saved", { data: { id: id } });
-    },
-    getSavedPage: () => {
-        return axios.get("api/user", { headers: authHeader() });
     },
     randomWord: () => {
         return axios.get("https://random-word-api.herokuapp.com/word?number=1");

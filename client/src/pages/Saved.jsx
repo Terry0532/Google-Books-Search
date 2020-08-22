@@ -2,7 +2,6 @@ import React from "react";
 import API from "../utils/API";
 import Message from "../components/Message";
 import { Table, Button, Container, Row, Col } from "react-bootstrap";
-import AuthService from "../utils/AuthService";
 
 class Saved extends React.Component {
     state = {
@@ -12,7 +11,7 @@ class Saved extends React.Component {
     //get saved list from database and print it out when open this page
     componentDidMount() {
         API
-            .savedBooks(AuthService.getCurrentUser().id)
+            .savedBooks()
             .then(data => this.setState({ savedList: data.data }))
             .catch(err => {
                 const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]

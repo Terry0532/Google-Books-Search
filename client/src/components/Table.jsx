@@ -24,7 +24,7 @@ function PrintTable(props) {
         <Table striped bordered hover responsive>
             <tbody>
                 {props.list.map(book => (
-                    <React.Fragment key={book.id}>
+                    <React.Fragment key={book.etag}>
                         <tr>
                             <th>{book.volumeInfo.publishedDate}</th>
                             <th>{book.volumeInfo.title}</th>
