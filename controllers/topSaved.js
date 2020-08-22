@@ -5,9 +5,9 @@ module.exports = {
     topSaved: function (req, res) {
         db.books
             .findAll({
-                group: ["title"],
+                group: ["title", "thumbnail", "infoLink", "publishedDate", "description"],
                 limit: 10,
-                attributes: ["title", [sequelize.fn("COUNT", "*"), "times"]],
+                attributes: ["title", "thumbnail", "infoLink", "publishedDate", "description", [sequelize.fn("COUNT", "*"), "times"]],
                 order: [[sequelize.literal('times'), 'DESC']]
             })
             .then(data => res.status(200).json(data))

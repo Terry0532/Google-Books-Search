@@ -58,7 +58,7 @@ class Saved extends React.Component {
                                                 <p>{book.description}</p>
                                             </td>
                                             <td>
-                                                <a href={book.infoLink}>Link</a>
+                                                <a href={book.infoLink} target="_blank" rel="noopener noreferrer">Link</a>
                                             </td>
                                         </tr>
                                     </React.Fragment>

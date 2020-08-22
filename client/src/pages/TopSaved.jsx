@@ -27,13 +27,21 @@ class TopSaved extends React.Component {
                         <Table striped bordered hover responsive>
                             <tbody>
                                 {this.state.topSavedList.map(book => (
-                                    <React.Fragment key={book.id}>
+                                    <React.Fragment key={new Date().getUTCMilliseconds()}>
+                                        <tr>
+                                            <th>{book.publishedDate}</th>
+                                            <th>{book.title}</th>
+                                            <th>{book.times} times saved.</th>
+                                        </tr>
                                         <tr>
                                             <td>
-                                                <p>{book.title}</p>
+                                                <img src={book.thumbnail} alt={book.title} />
                                             </td>
                                             <td>
-                                                <p>{book.times} times saved.</p>
+                                                <p>{book.description}</p>
+                                            </td>
+                                            <td>
+                                                <a href={book.infoLink} target="_blank" rel="noopener noreferrer">Link</a>
                                             </td>
                                         </tr>
                                     </React.Fragment>
