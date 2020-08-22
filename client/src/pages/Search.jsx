@@ -25,7 +25,6 @@ class Search extends React.Component {
                         this.setState({ random: "" });
                         //set state list to result list and print it out
                         this.setState({ list: result.data.items });
-                        console.log(this.state.list)
                     })
                     .catch(err => {
                         this.setState({ spinner: "d-none", search: "Search" });
