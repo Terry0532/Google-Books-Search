@@ -29,18 +29,23 @@ function PrintTable(props) {
                             <th>{book.volumeInfo.publishedDate}</th>
                             <th>{book.volumeInfo.title}</th>
                             {AuthService.getCurrentUser() &&
-                                <th><Button onClick={() => saveBook(book.volumeInfo)}>save</Button></th>
+                                <th><Button onClick={() => saveBook(book.volumeInfo)}>Save</Button></th>
                             }
                         </tr>
                         <tr>
-                            {/* if there's image then print it */}
-                            {book.volumeInfo.imageLinks !== undefined &&
-                                <td>
-                                    <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
-                                </td>
-                            }
                             <td>
-                                <p>{book.volumeInfo.description}</p>
+                                {
+                                    book.volumeInfo.imageLinks === undefined
+                                        ? <p>No image</p>
+                                        : <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
+                                }
+                            </td>
+                            <td>
+                                {
+                                    book.volumeInfo.description === undefined
+                                        ? <p>No description</p>
+                                        : <p>{book.volumeInfo.description}</p>
+                                }
                             </td>
                             <td>
                                 <a href={book.volumeInfo.infoLink} target="_blank" rel="noopener noreferrer">Link</a>

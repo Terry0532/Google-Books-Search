@@ -47,14 +47,22 @@ class Saved extends React.Component {
                                         <tr>
                                             <th>{book.publishedDate}</th>
                                             <th>{book.title}</th>
-                                            <th><Button onClick={() => this.deleteBook(book.id)}>delete</Button></th>
+                                            <th><Button onClick={() => this.deleteBook(book.id)}>Delete</Button></th>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <img src={book.thumbnail} alt={book.title} />
+                                                {
+                                                    book.thumbnail === null
+                                                        ? <p>No image</p>
+                                                        : <img src={book.thumbnail} alt={book.title} />
+                                                }
                                             </td>
                                             <td>
-                                                <p>{book.description}</p>
+                                                {
+                                                    book.description === null
+                                                        ? <p>No description</p>
+                                                        : <p>{book.description}</p>
+                                                }
                                             </td>
                                             <td>
                                                 <a href={book.infoLink} target="_blank" rel="noopener noreferrer">Link</a>
