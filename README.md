@@ -15,7 +15,7 @@ This is a MERN stack application that will call google books API to return user 
 ## Tech Used
 ![GitHub Top Language](https://img.shields.io/github/languages/top/Terry0532/Google-Books-Search) ![GitHub language count](https://img.shields.io/github/languages/count/Terry0532/Google-Books-Search)
 
-React, NodeJs, Sequelize, Google Books API, ExpressJS, JWT, dotenv, bootstrap
+React, NodeJs, Sequelize, Google Books API, ExpressJS, JWT, dotenv, bootstrap, ChartJS
 
 ## Screenshot
 ![Screenshot](images/screenshot.gif)

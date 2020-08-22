@@ -3,6 +3,7 @@ import Message from "./Message";
 import API from "../utils/API";
 import { Table, Button } from "react-bootstrap";
 import AuthService from "../utils/AuthService";
+import ReactTooltip from "react-tooltip";
 
 function PrintTable(props) {
     //to save book to database
@@ -28,8 +29,13 @@ function PrintTable(props) {
                         <tr>
                             <th>{book.volumeInfo.publishedDate}</th>
                             <th>{book.volumeInfo.title}</th>
-                            {AuthService.getCurrentUser() &&
-                                <th><Button onClick={() => saveBook(book.volumeInfo)}>Save</Button></th>
+                            {
+                                AuthService.getCurrentUser()
+                                    ? <th><Button onClick={() => saveBook(book.volumeInfo)}>Save</Button></th>
+                                    : <div>
+                                        <th><div data-tip data-for="saveButton"><Button disabled={true}>Save</Button></div></th>
+                                        <ReactTooltip id="saveButton" place="right" effect="float" type="info"><p>Login to save this book</p></ReactTooltip>
+                                    </div>
                             }
                         </tr>
                         <tr>
