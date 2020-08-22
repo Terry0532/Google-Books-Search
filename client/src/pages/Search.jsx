@@ -14,18 +14,21 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({ spinner: "", search: "Loading...", random: "d-none" });
         API
             .randomWord()
             .then(result => {
                 API
                     .googleBook(result.data[0])
                     .then(result => {
+                        this.setState({ spinner: "d-none", search: "Search" });
                         this.setState({ random: "" });
                         //set state list to result list and print it out
                         this.setState({ list: result.data.items });
                         console.log(this.state.list)
                     })
                     .catch(err => {
+                        this.setState({ spinner: "d-none", search: "Search" });
                         //show user error message
                         const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
                         Message(info);
