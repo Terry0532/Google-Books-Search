@@ -4,7 +4,7 @@ const authJwt = require("../../middleware/authJwt");
 
 router
     .route("/")
-    .post(addBook.addBook)
+    .post([authJwt.verifyToken], addBook.addBook)
     .get([authJwt.verifyToken], allBooks.allBooks)
     .delete(deleteBook.deleteBook);
 

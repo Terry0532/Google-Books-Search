@@ -6,7 +6,7 @@ export default {
         return axios.get("https://www.googleapis.com/books/v1/volumes?q=" + title);
     },
     saveBook: info => {
-        return axios.post("/api/saved", info);
+        return axios.post("/api/saved", info, { headers: authHeader() });
     },
     savedBooks: () => {
         return axios.get("/api/saved", { headers: authHeader() });
