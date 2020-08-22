@@ -27,7 +27,7 @@ class TopSaved extends React.Component {
                         <Table striped bordered hover responsive>
                             <tbody>
                                 {this.state.topSavedList.map(book => (
-                                    <React.Fragment key={new Date().getUTCMilliseconds()}>
+                                    <React.Fragment key={book.title}>
                                         <tr>
                                             <th>{book.publishedDate}</th>
                                             <th>{book.title}</th>
