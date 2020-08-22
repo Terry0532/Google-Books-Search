@@ -16,7 +16,7 @@ app.use(routes);
 //     );
 //     next();
 // });
-if (process.env.NODE_ENV !== 'production') require('dotenv').config()
+// if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
 app.use(express.static(path.join(__dirname, "client", "build")))
 app.get("*", (req, res) => {
