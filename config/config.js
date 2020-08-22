@@ -18,7 +18,7 @@ module.exports = {
     production: {
         username: process.env.production_username,
         password: process.env.production_password,
-        database: process.env.roduction_database,
+        database: process.env.production_database,
         host: process.env.production_host,
         port: 3306,
         dialect: "mysql"
