@@ -1,7 +1,8 @@
 import React from "react";
 import API from "../utils/API";
 import Message from "../components/Message";
-import { Table, Button, Container, Row, Col } from "react-bootstrap";
+import { Table, Button, Container, Row, Col, Spinner } from "react-bootstrap";
+import Lazyload from "react-lazyload";
 
 class Saved extends React.Component {
     state = {
@@ -54,7 +55,7 @@ class Saved extends React.Component {
                                                 {
                                                     book.thumbnail === null
                                                         ? <p>No image</p>
-                                                        : <img src={book.thumbnail} alt={book.title} />
+                                                        : <Lazyload throttle={400} placeholder={<div style={{ paddingLeft: "45px" }}><Spinner variant="primary" animation="border" size="lg" /></div>} once={true}><img src={book.thumbnail} alt={book.title} /></Lazyload>
                                                 }
                                             </td>
                                             <td>

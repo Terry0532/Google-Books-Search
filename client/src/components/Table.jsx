@@ -1,9 +1,10 @@
 import React from "react";
 import Message from "./Message";
 import API from "../utils/API";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Spinner } from "react-bootstrap";
 import AuthService from "../utils/AuthService";
 import ReactTooltip from "react-tooltip";
+import Lazyload from "react-lazyload";
 
 function PrintTable(props) {
     //to save book to database
@@ -43,7 +44,7 @@ function PrintTable(props) {
                                 {
                                     book.volumeInfo.imageLinks === undefined
                                         ? <p>No image</p>
-                                        : <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
+                                        : <Lazyload throttle={400} placeholder={<div style={{ paddingLeft: "45px" }}><Spinner variant="primary" animation="border" size="lg" /></div>} once={true}><img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} /></Lazyload>
                                 }
                             </td>
                             <td>

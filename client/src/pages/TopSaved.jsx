@@ -1,8 +1,9 @@
 import React from "react";
 import API from "../utils/API";
-import { Table, Container, Row, Col, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import { Table, Container, Row, Col, ToggleButtonGroup, ToggleButton, Spinner } from "react-bootstrap";
 import Message from "../components/Message";
 import { Bar } from 'react-chartjs-2';
+import Lazyload from "react-lazyload";
 
 class TopSaved extends React.Component {
     state = {
@@ -104,7 +105,7 @@ class TopSaved extends React.Component {
                                                         {
                                                             book.thumbnail === null
                                                                 ? <p>No image</p>
-                                                                : <img src={book.thumbnail} alt={book.title} />
+                                                                : <Lazyload throttle={400} placeholder={<div style={{ paddingLeft: "45px" }}><Spinner variant="primary" animation="border" size="lg" /></div>} once={true}><img src={book.thumbnail} alt={book.title} /></Lazyload>
                                                         }
                                                     </td>
                                                     <td>
