@@ -1,5 +1,5 @@
 import React from "react";
-import Table from "../components/Table";
+import Table from "../components/SearchTable";
 import API from "../utils/API";
 import Message from "../components/Message";
 import { Form, Button, Col, Spinner, Container, Row } from "react-bootstrap";

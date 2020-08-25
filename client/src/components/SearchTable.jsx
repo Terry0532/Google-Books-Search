@@ -6,7 +6,7 @@ import AuthService from "../utils/AuthService";
 import ReactTooltip from "react-tooltip";
 import Lazyload from "react-lazyload";
 
-function PrintTable(props) {
+function SearchTable(props) {
     //to save book to database
     function saveBook(book) {
         book.userId = AuthService.getCurrentUser().id;
@@ -65,4 +65,4 @@ function PrintTable(props) {
     );
 }
 
-export default PrintTable;
+export default SearchTable;
