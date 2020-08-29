@@ -49,35 +49,38 @@ class TopSaved extends React.Component {
                         <ToggleButton value={1}>Chart</ToggleButton>
                         <ToggleButton value={2} onClick={() => this.setState({ toggle: "Details" })}>Details</ToggleButton>
                     </ToggleButtonGroup>
-                    <Bar
-                        data={this.state.chartData}
-                        options={{
-                            title: {
-                                display: true,
-                                text: 'Ranking'
-                            },
-                            tooltips: {
-                                mode: 'index',
-                                intersect: false
-                            },
-                            responsive: true,
-                            layout: {
-                                padding: {
-                                    left: 50,
-                                    right: 50,
-                                    top: 0,
-                                    bottom: 50
-                                }
-                            },
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
+                    <div className="chart-container" style={{ position: "relative", height: "100vh", width: "100vw" }}>
+                        <Bar
+                            data={this.state.chartData}
+                            options={{
+                                title: {
+                                    display: true,
+                                    text: 'Ranking'
+                                },
+                                tooltips: {
+                                    mode: 'index',
+                                    intersect: false
+                                },
+                                responsive: true,
+                                layout: {
+                                    padding: {
+                                        left: 50,
+                                        right: 50,
+                                        top: 0,
+                                        bottom: 50
                                     }
-                                }]
-                            }
-                        }}
-                    />
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                },
+                                maintainAspectRatio: false
+                            }}
+                        />
+                    </div>
                 </div>
             );
         } else {
