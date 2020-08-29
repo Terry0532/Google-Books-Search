@@ -49,7 +49,7 @@ class TopSaved extends React.Component {
                         <ToggleButton value={1}>Chart</ToggleButton>
                         <ToggleButton value={2} onClick={() => this.setState({ toggle: "Details" })}>Details</ToggleButton>
                     </ToggleButtonGroup>
-                    <div className="chart-container" style={{ position: "relative", height: "100vh", width: "100vw" }}>
+                    <div className="canvas-container" style={{ position: "relative", height: "100vh", width: "100vw" }}>
                         <Bar
                             data={this.state.chartData}
                             options={{
