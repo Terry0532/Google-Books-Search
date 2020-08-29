@@ -10,12 +10,12 @@
 This is a MERN stack application that will call google books API to return user search results. If user wants to save the book for later use, they need to sign up first. After login user will have access to saved page. Ranking page will display top 10 saved books from all users. 
 
 ## Link
-[Google Books Search](https://frozen-anchorage-90956.herokuapp.com)
+[Google Books Search](http://googlebooks.online/)
 
 ## Tech Used
 ![GitHub Top Language](https://img.shields.io/github/languages/top/Terry0532/Google-Books-Search) ![GitHub language count](https://img.shields.io/github/languages/count/Terry0532/Google-Books-Search)
 
-React, NodeJs, Sequelize, Google Books API, ExpressJS, JWT, dotenv, bootstrap, ChartJS
+React, NodeJs, Sequelize, Google Books API, ExpressJS, JWT, dotenv, bootstrap, ChartJS, RDS, EC2
 
 ## Screenshot
 ![Screenshot](images/screenshot.gif)
