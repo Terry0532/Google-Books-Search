@@ -33,10 +33,10 @@ function SearchTable(props) {
                             {
                                 AuthService.getCurrentUser()
                                     ? <th><Button onClick={() => saveBook(book.volumeInfo)}>Save</Button></th>
-                                    : <div>
-                                        <th><div data-tip data-for="saveButton"><Button disabled={true}>Save</Button></div></th>
+                                    : <React.Fragment>
+                                        <th><span data-tip data-for="saveButton"><Button disabled={true}>Save</Button></span></th>
                                         <ReactTooltip id="saveButton" place="right" effect="float" type="info"><p>Login to save this book</p></ReactTooltip>
-                                    </div>
+                                    </React.Fragment>
                             }
                         </tr>
                         <tr>
@@ -44,7 +44,7 @@ function SearchTable(props) {
                                 {
                                     book.volumeInfo.imageLinks === undefined
                                         ? <p>No image</p>
-                                        : <Lazyload throttle={400} placeholder={<div style={{ paddingLeft: "45px" }}><Spinner variant="primary" animation="border" size="lg" /></div>} once={true}><img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} /></Lazyload>
+                                        : <Lazyload throttle={400} placeholder={<span style={{ paddingLeft: "45px" }}><Spinner variant="primary" animation="border" size="lg" /></span>} once={true}><img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} /></Lazyload>
                                 }
                             </td>
                             <td>
