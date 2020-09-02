@@ -21,26 +21,26 @@
 # # Finally runs the application
 # CMD [ "npm", "start" ]
 # ---------------------------------------------------------------------------
-# pull official base image
-FROM node:14
-# FROM node:13.12.0-alpine
+# # pull official base image
+# FROM node:14
+# # FROM node:13.12.0-alpine
 
-# set working directory
-WORKDIR /src/app
+# # set working directory
+# WORKDIR /src/app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+# # add `/app/node_modules/.bin` to $PATH
+# ENV PATH /app/node_modules/.bin:$PATH
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
+# # install app dependencies
+# COPY package.json ./
+# COPY package-lock.json ./
+# RUN npm install
 
-# add app
-COPY . ./
+# # add app
+# COPY . ./
 
-# start app
-CMD ["npm", "start"]    
+# # start app
+# CMD ["npm", "start"]    
 # ---------------------------------------------------------------------------
 # FROM node:latest
 
@@ -61,3 +61,18 @@ CMD ["npm", "start"]
 
 # EXPOSE 3000
 # CMD [ "node", "server.js" ]
+# ---------------------------------------------------------------------------
+FROM node:10.15.0
+RUN npm update -g npm
+RUN npm install -g http-server
+RUN mkdir -p /react
+ADD ./ ./react
+WORKDIR /react
+
+#ADD ./docker-entrypoint.sh /usr/local/bin/
+#RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x ./docker-entrypoint.sh
+
+EXPOSE 3000
+
+ENTRYPOINT ["./docker-entrypoint.sh"]

@@ -9,7 +9,9 @@ class TopSaved extends React.Component {
     state = {
         topSavedList: [],
         toggle: "Chart",
-        chartData: {}
+        chartData: {},
+        height: window.screen.height - 50,
+        width: window.screen.width
     }
 
     componentDidMount() {
@@ -39,6 +41,10 @@ class TopSaved extends React.Component {
                 const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
                 Message(info);
             });
+        window.addEventListener("resize", () => {
+            this.setState({ height: window.screen.height - 50, width: window.screen.width });
+            console.log("resize");
+        });
     }
 
     render() {
@@ -49,7 +55,7 @@ class TopSaved extends React.Component {
                         <ToggleButton value={1}>Chart</ToggleButton>
                         <ToggleButton value={2} onClick={() => this.setState({ toggle: "Details" })}>Details</ToggleButton>
                     </ToggleButtonGroup>
-                    <div className="canvas-container" style={{ position: "relative", height: "100vh", width: "100vw" }}>
+                    <div className="canvas-container" style={{ position: "relative", height: this.state.height, width: this.state.width }}>
                         <Bar
                             data={this.state.chartData}
                             options={{
