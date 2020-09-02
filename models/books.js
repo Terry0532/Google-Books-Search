@@ -6,7 +6,8 @@ module.exports = function (sequelize, DataTypes) {
         //some books doesn't have a thumbnail, allow it to be null
         thumbnail: { type: DataTypes.STRING, allowNull: true },
         infoLink: DataTypes.STRING,
-        userId: DataTypes.INTEGER
+        userId: DataTypes.INTEGER,
+        bookId: DataTypes.STRING
     });
     return books;
 };

@@ -10,24 +10,25 @@ class Search extends React.Component {
         list: [],
         spinner: "d-none",
         search: "Search",
-        random: "d-none"
+        random: "d-none",
+        disabled: false
     }
 
     componentDidMount() {
-        this.setState({ spinner: "", search: "Loading...", random: "d-none" });
+        this.setState({ spinner: "", search: "Loading...", random: "d-none", disabled: true });
         API
             .randomWord()
             .then(result => {
                 API
                     .googleBook(result.data[0])
                     .then(result => {
-                        this.setState({ spinner: "d-none", search: "Search" });
+                        this.setState({ spinner: "d-none", search: "Search", disabled: false });
                         this.setState({ random: "" });
                         //set state list to result list and print it out
                         this.setState({ list: result.data.items });
                     })
                     .catch(err => {
-                        this.setState({ spinner: "d-none", search: "Search" });
+                        this.setState({ spinner: "d-none", search: "Search", disabled: false });
                         //show user error message
                         const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
                         Message(info);
@@ -45,7 +46,7 @@ class Search extends React.Component {
 
     handleClick = e => {
         e.preventDefault();
-        this.setState({ spinner: "", search: "Loading...", random: "d-none" });
+        this.setState({ spinner: "", search: "Loading...", random: "d-none", disabled: true });
         //return and warn user enter something
         if (!this.state.title) {
             this.setState({ spinner: "d-none", search: "Search" });
@@ -56,12 +57,12 @@ class Search extends React.Component {
         API
             .googleBook(this.state.title)
             .then(result => {
-                this.setState({ spinner: "d-none", search: "Search" });
+                this.setState({ spinner: "d-none", search: "Search", disabled: false });
                 //set state list to result list and print it out
                 this.setState({ list: result.data.items, title: "" });
             })
             .catch(err => {
-                this.setState({ spinner: "d-none", search: "Search" });
+                this.setState({ spinner: "d-none", search: "Search", disabled: false });
                 //show user error message
                 const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
                 Message(info);
@@ -87,7 +88,7 @@ class Search extends React.Component {
                                     />
                                 </Col>
                                 <Col xs="auto">
-                                    <Button type="submit" className="mb-2" variant="primary"><Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" className={this.state.spinner} />{this.state.search}</Button>
+                                    <Button disabled={this.state.disabled} type="submit" className="mb-2" variant="primary"><Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" className={this.state.spinner} />{this.state.search}</Button>
                                 </Col>
                             </Form.Row>
                         </Form>
