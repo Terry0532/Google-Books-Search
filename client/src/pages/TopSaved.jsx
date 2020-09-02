@@ -60,7 +60,6 @@ class TopSaved extends React.Component {
         this.setState({ height: window.screen.height - 130, width: window.screen.width });
         window.addEventListener("resize", () => {
             this.setState({ height: window.screen.height - 130, width: window.screen.width });
-            console.log(this.state.height + " " + this.state.width);
         });
     }
 
