@@ -2,16 +2,18 @@ import React from "react";
 import API from "../utils/API";
 import { Table, Container, Row, Col, ToggleButtonGroup, ToggleButton, Spinner } from "react-bootstrap";
 import Message from "../components/Message";
-import { Bar } from 'react-chartjs-2';
+// import { Bar } from 'react-chartjs-2';
 import Lazyload from "react-lazyload";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 class TopSaved extends React.Component {
     state = {
         topSavedList: [],
         toggle: "Chart",
         chartData: {},
-        height: window.screen.height - 50,
-        width: window.screen.width
+        height: 0,
+        width: 0,
+        chart: []
     }
 
     componentDidMount() {
@@ -19,31 +21,46 @@ class TopSaved extends React.Component {
             .topSaved()
             .then(data => {
                 this.setState({ topSavedList: data.data });
-                const chartData = {
-                    labels: [],
-                    datasets: [
-                        {
-                            label: "times saved",
-                            backgroundColor: "rgba(75,192,192,1)",
-                            borderColor: "rgba(0,0,0,1)",
-                            borderWidth: 2,
-                            data: []
-                        }
-                    ]
-                }
+
+                // const chartData = {
+                //     labels: [],
+                //     datasets: [
+                //         {
+                //             label: "times saved",
+                //             backgroundColor: "rgba(75,192,192,1)",
+                //             borderColor: "rgba(0,0,0,1)",
+                //             borderWidth: 2,
+                //             data: []
+                //         }
+                //     ]
+                // }
+                // for (let index = 0; index < data.data.length; index++) {
+                //     chartData.labels.push(data.data[index].title);
+                //     chartData.datasets[0].data.push(data.data[index].times);
+                // }
+                // this.setState({ chartData: chartData });
+
+                const chart = [];
                 for (let index = 0; index < data.data.length; index++) {
-                    chartData.labels.push(data.data[index].title);
-                    chartData.datasets[0].data.push(data.data[index].times);
+                    const obj = {
+                        title: "",
+                        TimesSaved: 0
+                    }
+                    obj.title = data.data[index].title;
+                    obj.TimesSaved = data.data[index].times;
+                    chart.push(obj);
                 }
-                this.setState({ chartData: chartData });
+                this.setState({ chart: chart });
+
             })
             .catch(err => {
                 const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
                 Message(info);
             });
+        this.setState({ height: window.screen.height - 130, width: window.screen.width });
         window.addEventListener("resize", () => {
-            this.setState({ height: window.screen.height - 50, width: window.screen.width });
-            console.log("resize");
+            this.setState({ height: window.screen.height - 130, width: window.screen.width });
+            console.log(this.state.height + " " + this.state.width);
         });
     }
 
@@ -51,11 +68,22 @@ class TopSaved extends React.Component {
         if (this.state.toggle === "Chart") {
             return (
                 <div>
+
                     <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
                         <ToggleButton value={1}>Chart</ToggleButton>
                         <ToggleButton value={2} onClick={() => this.setState({ toggle: "Details" })}>Details</ToggleButton>
                     </ToggleButtonGroup>
-                    <div className="canvas-container" style={{ position: "relative", height: this.state.height, width: this.state.width }}>
+
+                    <BarChart width={this.state.width} height={this.state.height} data={this.state.chart}
+                        margin={{ top: 15, right: 30, left: 10, bottom: 0 }}>
+                        <XAxis dataKey="title" tick={<></>} />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="TimesSaved" fill="#82ca9d" />
+                    </BarChart>
+
+                    {/* <div className="canvas-container" style={{ position: "relative", height: this.state.height, width: this.state.width }}>
                         <Bar
                             data={this.state.chartData}
                             options={{
@@ -86,7 +114,8 @@ class TopSaved extends React.Component {
                                 maintainAspectRatio: false
                             }}
                         />
-                    </div>
+                    </div> */}
+
                 </div>
             );
         } else {
