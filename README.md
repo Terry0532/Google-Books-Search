@@ -18,7 +18,13 @@ This is a MERN stack application that will call google books API to return user 
 React, NodeJs, Sequelize, Google Books API, ExpressJS, JWT, dotenv, bootstrap, ChartJS, RDS, EC2
 
 ## Screenshot
-![Screenshot](images/screenshot.gif)
+On desktop
+
+![Screenshot](images/screenshot1.gif)
+On mobile (iPhone 6/7/8 plus)
+
+![Screenshot](images/screenshot2.gif)
+![Screenshot](images/screenshot3.gif)
 
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
