@@ -15,26 +15,26 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
+        //change button to loading and disabled
         this.setState({ spinner: "", search: "Loading...", random: "d-none", disabled: true });
+        //get wordlist 
+        var wordList = require('word-list-json');
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
         API
-            .randomWord()
+            .googleBook(wordList[getRandomInt(274907)])
             .then(result => {
-                API
-                    .googleBook(result.data[0])
-                    .then(result => {
-                        this.setState({ spinner: "d-none", search: "Search", disabled: false });
-                        this.setState({ random: "" });
-                        //set state list to result list and print it out
-                        this.setState({ list: result.data.items });
-                    })
-                    .catch(err => {
-                        this.setState({ spinner: "d-none", search: "Search", disabled: false });
-                        //show user error message
-                        const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
-                        Message(info);
-                    });
+                this.setState({ spinner: "d-none", search: "Search", disabled: false });
+                this.setState({ random: "" });
+                //set state list to result list and print it out
+                this.setState({ list: result.data.items });
             })
             .catch(err => {
+                this.setState({ spinner: "d-none", search: "Search", disabled: false });
+                //show user error message
                 const info = [err.message, "danger", "animate__shakeX", "animate__fadeOut"]
                 Message(info);
             });
@@ -46,6 +46,7 @@ class Search extends React.Component {
 
     handleClick = e => {
         e.preventDefault();
+        //change button to loading and disabled
         this.setState({ spinner: "", search: "Loading...", random: "d-none", disabled: true });
         //return and warn user enter something
         if (!this.state.title) {
